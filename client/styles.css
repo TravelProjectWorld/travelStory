@@ -1,0 +1,18 @@
+.center{
+    display: flex;
+}
+.top-icon{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-top: -10px;
+}
+.wrap{
+    width: 100%;
+    height: 400px;
+    background: url(travel2.jpg) no-repeat center;
+    background-size: cover;
+}
+.navbar{
+    margin-bottom: 0;
+}
