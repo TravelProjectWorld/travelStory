@@ -6,13 +6,15 @@ import {AUTH_PROVIDERS} from 'angular2-jwt';
 
 import {HomeComponent} from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import {StoryComponent} from './components/story/story.component';
+
 
 import {Auth} from './services/auth.service';
 import {AuthGuard} from './auth.guard';
 
 @NgModule({
   imports: [ BrowserModule, routing ],
-  declarations: [ AppComponent, HomeComponent, ProfileComponent ],
+  declarations: [ AppComponent, HomeComponent, ProfileComponent,StoryComponent ],
   bootstrap: [ AppComponent ],
   providers: [
     appRoutingProviders,
