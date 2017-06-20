@@ -41,6 +41,7 @@ module.exports={
         })
   },
 
+
   //LOGIN STATUS
   check_status: (req,res)=>{
     console.log("HIT CHECK STATUS", req.session.user);
@@ -53,6 +54,31 @@ module.exports={
     req.session.destroy()
     res.json(true)
   },
+
+  //Create users
+  create: (req, res) => {
+    User.findOne({user_id : req.body.user_id })
+      .catch(err => {
+            console.log("User findOne eror", err);
+            res.status(500).json(err)
+          })
+          .then (user => {
+            if (user) {
+              console.log("Controller:", user);
+              res.json(true)
+            } else {
+              let newUser = new User(req.body)
+              newUser.save()
+                      .catch(err => {
+                        console.log("Cannot save user to db:", err);
+                        res.status(500).json(err)
+                      })
+                      .then(() => {
+                        res.json(true)
+                      })
+              }
+          })
+  }
 
 
 
