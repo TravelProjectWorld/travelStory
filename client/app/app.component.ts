@@ -8,6 +8,9 @@ import {Auth} from './services/auth.service';
 })
 export class AppComponent {
     constructor(private auth:Auth){
-        
+         var profile = JSON.parse(localStorage.getItem('profile'));
+         console.log('user info');
+         console.log(profile);
+         console.log('user end');
     }
 }
