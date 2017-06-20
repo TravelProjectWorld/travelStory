@@ -1,21 +1,22 @@
-var mongoose=require('mongoose');
-mongoose.Promise = global.Promise
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
 
-const UserSchema=new mongoose.Schema({
-      name: {type: String, minlength:[4, "Your name has to be at least 4 characters long!"], maxlength: [20, "Your name has to be maximum 20 characters long!"],  validate: {
-              validator: function(v) {
-                let reg= /^[a-zA-Z0-9]+([_\s\-]?[a-zA-Z0-9])*$/;
-                return reg.test(v);
-              },
-              message: '{VALUE} is not a valid  name!'
-            },
-            required: [true, "Please add a name! "]
-          },
-  },{timestamps: true});
-
-
+const UserSchema=new mongoose.Schema(
+  {
+    user_id: { type : String},
+    name: { type: String},
+    nickname: {type: String},
+    given_name: {type: String},
+    family_name : {type: String},
+    gender: {type: String},
+    picture : {type : String},
+  },
+  {
+    timestamps: true
+  }
+);
 
 mongoose.model("User", UserSchema);
 
-var User=mongoose.model("User");
+var User = mongoose.model("User");

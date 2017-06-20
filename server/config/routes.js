@@ -15,6 +15,10 @@ module.exports=function(app){
         app.get("/logout", users.logout)
 
 
+        //Create users
+        app.post('/users', users.create)
+
+
         //to make angular routes work properly
         app.get("*", function(req, res){
             res.sendFile(path.resolve("client/index.html"))
