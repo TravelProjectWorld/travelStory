@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Auth} from '../../services/auth.service';
 import {User} from './user';
@@ -11,9 +11,10 @@ import {UserService} from '../../services/user.service';
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.css']
 })
-export class ProfileComponent { 
+export class ProfileComponent implements OnInit { 
     profile:any;
     user: User;
+    all_users: User[];
 
     constructor(private auth:Auth, private userService: UserService){
         this.profile = JSON.parse(localStorage.getItem('profile'));
@@ -26,5 +27,9 @@ export class ProfileComponent {
                     console.log(data);
                 })
                 .catch((err) => console.log(err))    
-    }
+       }
+
+        ngOnInit(){
+        }
+
 }
