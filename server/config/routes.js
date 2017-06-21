@@ -11,6 +11,8 @@ module.exports=function(app){
         app.get("/get_users", users.get_users)
         //Create users
         app.post('/users', users.create)
+        //Logout to destroy session
+        app.post('/logout', users.logout)
         //Create story
         app.post("/add_story", stories.add_story)
         //Get all stories

@@ -39,6 +39,12 @@ module.exports={
                       })
               }
           })
+  },
+
+  //LOGOUT
+  logout: (req, res)=>{
+    req.session.destroy()
+    res.json(true)
   }
 
 
