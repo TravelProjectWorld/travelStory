@@ -11,6 +11,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
     styleUrls: ['stories.component.css']
 })
 export class StoryComponent implements OnInit {
+    allErrors: String [];
     new_story: Story
     returnUrl: String
     countryList: String[] =["United States of America", "Mexico", "Canada", "Sweden", "Iceland"]
@@ -32,7 +33,17 @@ export class StoryComponent implements OnInit {
                     this.returnUrl=this.route.snapshot.queryParams["/"] || "/";
                     this.router.navigate([this.returnUrl])
                 })
-                .catch(err=>{console.log("Error creating story")})
-            }
+                .catch(err=>{
+                    //Display backend errors.
+                    this.allErrors=[];
+                    let res=JSON.parse(err._body)
+                    for(var key  in res.errors){
+                    this.allErrors.push(res.errors[key].message)
+                }
+            })
+    }
+
+
+
             
 }
