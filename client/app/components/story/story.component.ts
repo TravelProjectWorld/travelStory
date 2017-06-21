@@ -43,6 +43,15 @@ export class StoryComponent implements OnInit {
             })
     }
 
+        files : FileList; 
+    getFiles(event:any){ 
+        this.files = event.target.files; 
+        this.logForm()
+    } 
+    logForm() { 
+         console.log(this.files); 
+    } 
+
 
 
             

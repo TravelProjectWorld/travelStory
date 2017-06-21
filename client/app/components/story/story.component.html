@@ -13,10 +13,7 @@
     </div>
     <div class="col-md-8">
         <h3>Add a new Story.</h3>
-
-
         <form name="frmComment" id="frmComment" (submit)="add_story()" #formData="ngForm">
-
             <label for="country">Please select a country:</label>
             <select [(ngModel)]="new_story.country" name="country" id="country" class="form-control"  required #country="ngModel">
                 <option *ngFor="let country of countryList" [value]="country" >{{country}}</option>
@@ -27,8 +24,6 @@
                         </div>
                     </div>  
                 <hr>
-
-
             <label for="txtComment">Enter title here:</label>
             <input type="text" [(ngModel)]="new_story.title" name="title" id="txtComment" class="form-control" placeholder="Enter a title..."  required minlength="4" #title="ngModel">
                      <div *ngIf="title.errors && (title.dirty || title.touched)"  class="red_error">
@@ -40,7 +35,6 @@
                         </div>
                     </div>  
               <hr>
-
             <label for="txtCommentHere">Enter description here:</label>              
             <textarea [(ngModel)]="new_story.description" name="description" id="txtCommentHere" class="form-control" rows="3" placeholder="Describe yourself here..." required minlength="10" maxlength="2000" #description="ngModel"></textarea>
                 <div *ngIf="description.errors && (description.dirty || description.touched)"  class="red_error">
@@ -55,7 +49,6 @@
                     </div>
                 </div>  
                 <hr>   
-
             <label for="url">Add image url here:</label>
             <input type="text" [(ngModel)]="new_story.url" name="url" id="url" class="form-control" placeholder="Enter a url..." required  #url="ngModel" >
                 <div *ngIf="url.errors && (url.dirty || url.touched)"  class="red_error">
@@ -64,8 +57,6 @@
                     </div>
                 </div>  
                 <hr>
-
-
             <button type="submit" class="btn btn-info btn-lg" [disabled]="!formData.valid" ><span class="glyphicon glyphicon-comment"></span></button>
         </form>
       
@@ -73,3 +64,22 @@
     </div>
 </div>
 </div>
+
+
+<div class="container"> 
+    <form #form = "ngForm" (ngSubmit)="logForm(form.value)" enctype="multipart/form-data"> 
+        <div class="form-group"> 
+            <label>Name</label> 
+            <input type="text" name="name" class="form-control" ngModel> 
+        </div> 
+        <div class="form-group"> 
+            <label>File</label> 
+            <input type="file" name="file" ngModel (change)="getFiles($event)"> 
+        </div> 
+        <button type="submit" class="btn btn-primary">SUBMIT</button> 
+    </form> 
+</div> 
+<div *ngIf="files">
+    {{files[0].name}}
+</div>
+
