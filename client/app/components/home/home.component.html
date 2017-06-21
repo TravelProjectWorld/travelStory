@@ -5,7 +5,7 @@
         <div class="alert alert-danger" *ngIf="!auth.authenticated()">You are not logged in</div>-->
      </div>
 </div>
-     <div *ngIf="all_stories" >
+     <!--<div *ngIf="all_stories" >
        <ul *ngFor="let story of all_stories">
            <li>
                <h2>Country: {{story.country}}</h2>               
@@ -15,4 +15,17 @@
                
             </li>
        </ul>
+     </div>-->
+
+     <div class="all_stories" *ngIf="all_stories" >
+       <div class="one_story" *ngFor="let story of all_stories">
+            <img class="img_story" src="{{story.url}}" alt="Smiley face">
+            <div class="info">
+               <h2>{{story.country}}</h2>               
+               <h2>{{story.title}}</h2>
+            </div>
+            <div class="overlay">
+                <h6>Description: {{story.description}}</h6>
+            </div>
+        </div>
      </div>
