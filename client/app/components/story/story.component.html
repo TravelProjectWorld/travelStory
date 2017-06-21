@@ -1,5 +1,10 @@
 <h1>NEW STORY ADD</h1>
 
+<div class="alert alert-danger" *ngIf="allErrors">
+  <h3>Please review the follwing errors!</h3> 
+  <p id="errors"  *ngFor="let er of allErrors">{{er}} </p>
+</div>
+
 
 <div class="container">
 <div class="row">
@@ -10,26 +15,58 @@
         <h3>Add a new Story.</h3>
 
 
-        <form name="frmComment" id="frmComment" (submit)="add_story()">
+        <form name="frmComment" id="frmComment" (submit)="add_story()" #formData="ngForm">
+
             <label for="country">Please select a country:</label>
-            <select [(ngModel)]="new_story.country" name="country" id="country" class="form-control"  >
+            <select [(ngModel)]="new_story.country" name="country" id="country" class="form-control"  required #country="ngModel">
                 <option *ngFor="let country of countryList" [value]="country" >{{country}}</option>
             </select>
+                    <div *ngIf="country.errors && (country.dirty || country.touched)"  class="red_error">
+                        <div [hidden]="!country.errors.required">
+                            Country is required
+                        </div>
+                    </div>  
                 <hr>
 
 
             <label for="txtComment">Enter title here:</label>
-            <input type="text" [(ngModel)]="new_story.title" name="title" id="txtComment" class="form-control" placeholder="Enter a title...">
+            <input type="text" [(ngModel)]="new_story.title" name="title" id="txtComment" class="form-control" placeholder="Enter a title..."  required minlength="4" #title="ngModel">
+                     <div *ngIf="title.errors && (title.dirty || title.touched)"  class="red_error">
+                        <div [hidden]="!title.errors.required">
+                            Title is required
+                        </div>
+                        <div [hidden]="!title.errors.minlength">
+                            Title must be at least 4 characters long.
+                        </div>
+                    </div>  
               <hr>
+
             <label for="txtCommentHere">Enter description here:</label>              
-            <textarea [(ngModel)]="new_story.description" name="description" id="txtCommentHere" class="form-control" rows="3" placeholder="Describe yourself here..." ></textarea>
-                <hr>    
+            <textarea [(ngModel)]="new_story.description" name="description" id="txtCommentHere" class="form-control" rows="3" placeholder="Describe yourself here..." required minlength="10" maxlength="2000" #description="ngModel"></textarea>
+                <div *ngIf="description.errors && (description.dirty || description.touched)"  class="red_error">
+                    <div [hidden]="!description.errors.required">
+                        Description is required.
+                    </div>
+                    <div [hidden]="!description.errors.minlength">
+                        Description must be at least 10 characters long.
+                    </div>
+                    <div [hidden]="!description.errors.maxlength">
+                        Description can`t have more than 2000 characters.
+                    </div>
+                </div>  
+                <hr>   
+
             <label for="url">Add image url here:</label>
-            <input type="text" [(ngModel)]="new_story.url" name="url" id="url" class="form-control" placeholder="Enter a title...">
+            <input type="text" [(ngModel)]="new_story.url" name="url" id="url" class="form-control" placeholder="Enter a url..." required  #url="ngModel" >
+                <div *ngIf="url.errors && (url.dirty || url.touched)"  class="red_error">
+                    <div [hidden]="!url.errors.required">
+                        Url is required
+                    </div>
+                </div>  
                 <hr>
 
 
-            <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-comment"></span></button>
+            <button type="submit" class="btn btn-info btn-lg" [disabled]="!formData.valid" ><span class="glyphicon glyphicon-comment"></span></button>
         </form>
       
 
