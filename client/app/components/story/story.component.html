@@ -10,12 +10,17 @@
         <h3>Add a new Story.</h3>
 
 
-        <form name="frmComment" id="frmComment">
+        <form name="frmComment" id="frmComment" (submit)="add_story()">
             <label for="txtComment">Enter title here:</label>
-            <input type="text" name="commentUser" id="txtComment" class="form-control" placeholder="Enter a title...">
+            <input type="text" [(ngModel)]="new_story.title" name="title" id="txtComment" class="form-control" placeholder="Enter a title...">
               <hr>
             <label for="txtCommentHere">Enter description here:</label>              
-            <textarea id="txtCommentHere" class="form-control" rows="3" placeholder="Describe yourself here..." ></textarea>
+            <textarea [(ngModel)]="new_story.description" name="description" id="txtCommentHere" class="form-control" rows="3" placeholder="Describe yourself here..." ></textarea>
+                <hr>    
+            <label for="url">Add image url here:</label>
+            <input type="text" [(ngModel)]="new_story.url" name="url" id="url" class="form-control" placeholder="Enter a title...">
+                <hr>
+            <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-comment"></span></button>
         </form>
       
 

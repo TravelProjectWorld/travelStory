@@ -14,47 +14,6 @@ module.exports={
         })
   },
 
-  //login
-  login:(req, res)=>{
-    User.findOne({name: req.body.name})
-        .catch(err =>{
-          console.log("User findOne eror", err);
-          response.status(500).json(err)
-        })
-        .then(user=>{
-          if(user){
-            console.log("Controller:", user);
-            req.session.user=user
-            res.json(true)
-          }else{
-            let new_user = new User(req.body)
-            new_user.save()
-                    .catch(err=>{
-                      console.log("Cannot save user to db:", err);
-                      res.status(500).json(err)
-                    })
-                    .then(()=>{
-                      req.session.user=new_user
-                      res.json(true)
-                    })
-            }
-        })
-  },
-
-
-  //LOGIN STATUS
-  check_status: (req,res)=>{
-    console.log("HIT CHECK STATUS", req.session.user);
-    res.json({user: req.session.user })
-  },
-
-
-  //LOGOUT
-  logout: (req, res)=>{
-    req.session.destroy()
-    res.json(true)
-  },
-
   //Create users
   create: (req, res) => {
     User.findOne({user_id : req.body.user_id })
@@ -65,6 +24,7 @@ module.exports={
           .then (user => {
             if (user) {
               console.log("Controller:", user);
+              req.session.user=user
               res.json(true)
             } else {
               let newUser = new User(req.body)
@@ -74,6 +34,7 @@ module.exports={
                         res.status(500).json(err)
                       })
                       .then(() => {
+                        req.session.user=newUser
                         res.json(true)
                       })
               }
