@@ -42,6 +42,6 @@ export class Auth {
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     //Destroy express session.
-    return this.http.post("/logout", OPTIONS).toPromise()
+    // return this.http.post("/logout", OPTIONS).toPromise()
   };
 }
