@@ -9,6 +9,7 @@ module.exports={
       console.log("USER IN SESSION", req.session.user)
       var new_story=new Story({
           user: req.session.user,
+          country: req.body.country,
           title:req.body.title,
           description: req.body.description,
           url: req.body.url
