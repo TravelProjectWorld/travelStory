@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Auth} from '../../services/auth.service';
-import {UserService} from '../../services/user.service';
+import { UserService } from '../../services/user.service';
+import { Story } from "../story/story";
 
 
 @Component({
@@ -9,6 +10,7 @@ import {UserService} from '../../services/user.service';
     templateUrl: 'home.component.html'
 })
 export class HomeComponent implements OnInit {
+    all_stories:Story[]
 
     constructor(
         private auth:Auth,
@@ -34,6 +36,7 @@ export class HomeComponent implements OnInit {
     this.userService.get_all_stories()
         .then((data) => {
             console.log("stories>>>>>>>>",data);
+            this.all_stories=data
         })
         .catch((err) => console.log(err))  
     }

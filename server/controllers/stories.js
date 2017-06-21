@@ -5,7 +5,7 @@ module.exports={
 
   //Create story
   add_story: (req, res) => {
-      console.log('STORY>>', req.body)
+      console.log('STORY>>', req.body.url)
       console.log("USER IN SESSION", req.session.user)
       var new_story=new Story({
           user: req.session.user,

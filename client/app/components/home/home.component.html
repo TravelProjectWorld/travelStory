@@ -5,3 +5,13 @@
         <div class="alert alert-danger" *ngIf="!auth.authenticated()">You are not logged in</div>-->
      </div>
 </div>
+     <div *ngIf="all_stories" >
+       <ul *ngFor="let story of all_stories">
+           <li>
+               <h2>{{story.title}}</h2>
+               <h6>{{story.description}}</h6>               
+               <img src="{{story.url}}" alt="Smiley face"  width="500">
+               
+            </li>
+       </ul>
+     </div>
