@@ -17,6 +17,8 @@ module.exports=function(app){
         app.post("/add_story", stories.add_story)
         //Get all stories
         app.get("/get_stories", stories.get_stories)
+        //Get last 3  stories
+        app.get("/get_last_stories", stories.get_last_stories)
 
 
         //to make angular routes work properly

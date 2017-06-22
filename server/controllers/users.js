@@ -23,7 +23,6 @@ module.exports={
           })
           .then (user => {
             if (user) {
-              console.log("Controller:", user);
               req.session.user=user
               res.json(true)
             } else {

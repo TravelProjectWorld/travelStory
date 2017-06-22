@@ -14,7 +14,7 @@ export class StoryComponent implements OnInit {
     allErrors: String [];
     new_story: Story
     returnUrl: String
-    countryList: String[] =["United States of America", "Mexico", "Canada", "Sweden", "Iceland"]
+    countryList: String[] 
 
     constructor(
         private userService: UserService,
@@ -24,13 +24,14 @@ export class StoryComponent implements OnInit {
 
     ngOnInit() {
         this.new_story=new Story;
+        this.countryList=this.userService.country_list;
     }
     add_story(){
         this.userService.create_story(this.new_story)
                 .then(()=>{
                     this.new_story=new Story
                     //After added a story redirect to Home Page
-                    this.returnUrl=this.route.snapshot.queryParams["/"] || "/";
+                    this.returnUrl=this.route.snapshot.queryParams["/profile"] || "/profile";
                     this.router.navigate([this.returnUrl])
                 })
                 .catch(err=>{

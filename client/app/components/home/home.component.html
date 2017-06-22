@@ -1,21 +1,13 @@
 <div class="wrap">
     <div class="container">
         <h1>Welcome</h1>
+
         <!--<div class="alert alert-success" *ngIf="auth.authenticated()">You are logged in</div>
         <div class="alert alert-danger" *ngIf="!auth.authenticated()">You are not logged in</div>-->
+
+        
      </div>
 </div>
-     <!--<div *ngIf="all_stories" >
-       <ul *ngFor="let story of all_stories">
-           <li>
-               <h2>Country: {{story.country}}</h2>               
-               <h2>Title: {{story.title}}</h2>
-               <h6>Description: {{story.description}}</h6>               
-               <img src="{{story.url}}" alt=""  width="500">
-            </li>
-       </ul>
-     </div>-->
-
      <div class="all_stories" *ngIf="all_stories" >
        <div class="one_story" *ngFor="let story of all_stories">
             <img class="img_story" src="{{story.url}}" alt="Smiley face">

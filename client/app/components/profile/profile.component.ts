@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 // import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Auth} from '../../services/auth.service';
 import {User} from './user';
-import {UserService} from '../../services/user.service';
+import { UserService } from '../../services/user.service';
+import { Story } from "../story/story";
 
 
 @Component({
@@ -11,7 +12,8 @@ import {UserService} from '../../services/user.service';
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.css']
 })
-export class ProfileComponent implements OnInit { 
+export class ProfileComponent implements OnInit {
+    user_stories: Story[]; 
     profile:any;
     user: User;
     all_users: User[];
@@ -25,11 +27,21 @@ export class ProfileComponent implements OnInit {
         this.userService.create_user(this.user)
                 .then((data) => {
                     console.log(data);
+                    this.get_stories();
                 })
                 .catch((err) => console.log(err))    
        }
 
         ngOnInit(){
+        }
+        //Get last 3 stories added by the user in session
+        get_stories(){
+            this.userService.get_last_stories()
+                .then((data) => {
+                    console.log("Users stories>>>>>>>>",data);
+                    this.user_stories=data
+                })
+                .catch((err) => console.log(err))  
         }
 
 }
