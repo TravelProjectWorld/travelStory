@@ -31,6 +31,16 @@ module.exports={
           res.status(500).json(err)
         })
   },
+    //get last 3 stories of the user in session.
+  get_last_stories: (req, res)=>{
+    console.log("USER IN SESSON INFO: ", req.session.user.user_id)
+    Story.find({user: req.session.user}).sort({createdAt:-1})
+        .then (stories=>{res.json(stories)})
+        .catch(err=>{
+          console.log("Story get error", err);
+          res.status(500).json(err)
+        })
+  },
 
   
 
